@@ -63,6 +63,15 @@ svg {
 	text-anchor:end;
 	}
 
+.detail {
+	fill:#fff;
+	font-size:24px;
+	text-anchor:middle;
+	}
+.detailLine {
+	fill:#fff;
+	}
+
 .cross {
 	stroke:#fff;
 	stroke-width:0.5;
@@ -83,11 +92,18 @@ svg {
 	stroke-width:1;
 	fill:transparent;
 	}
+.nodesG.focus .node {
+	stroke:red;
+	}
 
 .cross_01,
 .cross_02 {
 	stroke:none;
 	fill:#fff;
+	}
+.nodesG.focus .cross_01,
+.nodesG.focus .cross_02 {
+	fill:red;
 	}
 
 .conn {

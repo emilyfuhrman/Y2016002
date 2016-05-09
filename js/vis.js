@@ -31,6 +31,30 @@ window.onload = function(){
 
 			var svg = d3.select('#vis');
 
+			var detailLine,
+				detailText;
+
+			detailLine = svg.selectAll('rect.detailLine')
+				.data(['']);
+			detailLine.enter().append('rect')
+				.classed('detailLine',true);
+			detailLine
+				.attr('x',self.w/2 -500)
+				.attr('y',150)
+				.attr('width',1000)
+				.attr('height',2)
+				;
+			detailLine.exit().remove();
+
+			detailText = svg.selectAll('text.detail')
+				.data(['']);
+			detailText.enter().append('text')
+				.classed('detail',true);
+			detailText
+				.attr('x',self.w/2)
+				.attr('y',120);
+			detailText.exit().remove();
+
 			var rings,
 				cross,
 
@@ -139,6 +163,18 @@ window.onload = function(){
 					d.y = pos_y;
 
 					return 'translate(' +pos_x +',' +pos_y +')';
+				});
+			nodesG
+				.on('mouseover',function(d){
+					d3.selectAll('.focus').classed('focus',false);
+					d3.select(this).classed('focus',true);
+
+					var str = '0' +d.Hour +':' +d.Minute +':' +d.Second +' — ' +d.Notes;
+					detailText.text(str);
+				})
+				.on('mouseout',function(d){
+					d3.selectAll('.focus').classed('focus',false);
+					detailText.text('');
 				});
 			nodesG.exit().remove();
 
