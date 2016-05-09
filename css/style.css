@@ -121,6 +121,52 @@ svg#chart {
 	fill:none;
 	}
 
+.chartLine {
+	stroke:black;
+	stroke-width:0.5;
+	fill:none;
+	}
+
+.bar {
+	stroke:none;
+	fill:black;
+	}
+.bar.focus,
+.bar:hover {
+	fill:red;
+	}
+
+.chartLabel {
+	font-family:sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-transform:uppercase;
+	}
+
+.axisL,
+.axisR {
+	font-family:sans-serif;
+	font-size:12px;
+	}
+.axisL {
+	text-anchor:start;
+	}
+.axisR {
+	text-anchor:end;
+	}
+
+#admin {
+	float:left;
+	font-family:sans-serif;
+	font-size:18px;
+	padding:15px 60px 60px;
+	}
+#admin span {
+	display:block;
+	float:left;
+	width:100%;
+	line-height:1.4em;
+	}
 
 
 
