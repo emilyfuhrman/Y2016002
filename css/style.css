@@ -50,24 +50,37 @@ svg {
 	shape-rendering:geometricPrecision;
 	}
 
+.label {
+	stroke:none;
+	fill:#fff;
+	font-family:sans-serif;
+	font-size:24px;
+	}
+.label.left {
+	text-anchor:start;
+	}
+.label.right {
+	text-anchor:end;
+	}
+
+.cross {
+	stroke:#fff;
+	stroke-width:0.5;
+	fill:none;
+	}
+
 .ring {
 	stroke:#fff;
 	stroke-width:0.1;
 	fill:none;
 	}
 .ring.last {
-	stroke-width:1.5;
-	}
-
-.cross {
-	stroke:#fff;
-	stroke-width:1;
-	fill:none;
+	stroke-width:2;
 	}
 
 .node {
 	stroke:#fff;
-	stroke-width:0.5;
+	stroke-width:1;
 	fill:transparent;
 	}
 
@@ -79,7 +92,7 @@ svg {
 
 .conn {
 	stroke:red;
-	stroke-width:0.25;
+	stroke-width:0.5;
 	fill:none;
 	}
 

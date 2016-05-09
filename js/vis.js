@@ -11,7 +11,7 @@ window.onload = function(){
 		w:1280,
 		h:1280,
 
-		padding_top:45,
+		padding_top:90,
 
 		ring_padding:5,
 		ring_center:60,
@@ -33,6 +33,9 @@ window.onload = function(){
 
 			var rings,
 				cross,
+
+				labels,
+
 				nodeG,
 
 				nodesG,
@@ -60,7 +63,7 @@ window.onload = function(){
 				});
 			rings.exit().remove();
 
-			var crossH = 1000;
+			var xH = 1000;
 
 			cross = svg.selectAll('line.cross')
 				.data([1,2]);
@@ -68,18 +71,39 @@ window.onload = function(){
 				.classed('cross',true);
 			cross
 				.attr('x1',function(d,i){
-					return i === 0 ? coord_ctr_x -(crossH/2) : coord_ctr_x;
+					return i === 0 ? coord_ctr_x -(xH/2) : coord_ctr_x;
 				})
 				.attr('y1',function(d,i){
-					return i === 0 ? coord_ctr_y +self.ring_center : coord_ctr_y -(crossH/2) +self.ring_center;
+					return i === 0 ? coord_ctr_y +self.ring_center : coord_ctr_y -(xH/2) +self.ring_center;
 				})
 				.attr('x2',function(d,i){
-					return i === 0 ? coord_ctr_x +(crossH/2) : coord_ctr_x;
+					return i === 0 ? coord_ctr_x +(xH/2) : coord_ctr_x;
 				})
 				.attr('y2',function(d,i){
-					return i === 0 ? coord_ctr_y +self.ring_center : coord_ctr_y +(crossH/2) +self.ring_center;
+					return i === 0 ? coord_ctr_y +self.ring_center : coord_ctr_y +(xH/2) +self.ring_center;
 				});
 			cross.exit().remove();
+
+			var labelDist = xH/2;
+
+			labels = svg.selectAll('text.label')
+				.data(['Graphic conflict','Directional conflict','Conflict of scale','Spatial conflict']);
+			labels.enter().append('text')
+				.classed('label',true);
+			labels
+				.attr('class',function(d,i){
+					return i%2 === 0 ? 'label left' : 'label right'
+				})
+				.attr('x',function(d,i){
+					var dist_from_ctr = i%2 === 0 ? -labelDist : labelDist;
+					return coord_ctr_x +dist_from_ctr;
+				})
+				.attr('y',function(d,i){
+					var dist_from_ctr = i <= 1 ? -labelDist +10 : labelDist -10;
+					return coord_ctr_y +self.ring_center +dist_from_ctr;
+				})
+				.text(function(d){ return d; })
+			labels.exit().remove();
 
 			var nodeW = 24;
 
@@ -88,10 +112,34 @@ window.onload = function(){
 			nodeG.enter().append('g')
 				.classed('nodeG',true);
 			nodeG.exit().remove();
+			
 			nodesG = nodeG.selectAll('g.nodesG')
 				.data(function(d){ return d; });
 			nodesG.enter().append('g')
 				.classed('nodesG',true);
+			nodesG
+				.attr('transform',function(d,i){
+					var dist_from_ctr_y = (+d.Minutes_Total*self.ring_padding) +(+d.Second/60*self.ring_padding) +self.ring_center;
+					var ang,
+						pos_x,
+						pos_y;
+					if(d.Type === 'Graphic'){
+						ang = (180 +(Math.random() *90)) * Math.PI / 180;
+					} else if(d.Type === 'Directional') {
+						ang = (270 +(Math.random() *90)) * Math.PI / 180;
+					} else if(d.Type === 'Scale'){
+						ang = (90 +(Math.random() *90)) * Math.PI / 180;
+					} else if(d.Type === 'Spatial'){
+						ang = (360 +(Math.random() *90)) * Math.PI / 180;
+					}
+					pos_x = coord_ctr_x +Math.cos(ang)*dist_from_ctr_y;
+					pos_y = coord_ctr_y +self.ring_center +Math.sin(ang)*dist_from_ctr_y;
+
+					d.x = pos_x;
+					d.y = pos_y;
+
+					return 'translate(' +pos_x +',' +pos_y +')';
+				});
 			nodesG.exit().remove();
 
 			nodes = nodesG.selectAll('rect.node')
@@ -100,18 +148,17 @@ window.onload = function(){
 				.classed('node',true);
 			nodes
 				.attr('x',function(d){
-					return coord_ctr_x -(nodeW/2);
+					return -(nodeW/2);
 				})
 				.attr('y',function(d){
-					var dist_from_ctr = (+d.Minutes_Total*self.ring_padding) +(+d.Second/60*self.ring_padding);
-					return coord_ctr_y -(dist_from_ctr) -(nodeW/2);
+					return -(nodeW/2);
 				})
 				.attr('width',nodeW)
 				.attr('height',nodeW)
 				;
 			nodes.exit().remove();
 
-			var crossW = 0.5,
+			var crossW = 1,
 				crossH = 36;
 
 			cross_01 = nodesG.selectAll('rect.cross_01')
@@ -120,11 +167,10 @@ window.onload = function(){
 				.classed('cross_01',true);
 			cross_01
 				.attr('x',function(d){
-					return coord_ctr_x -(crossW/2);
+					return -(crossW/2);
 				})
 				.attr('y',function(d){
-					var dist_from_ctr = (+d.Minutes_Total*self.ring_padding) +(+d.Second/60*self.ring_padding);
-					return coord_ctr_y -(dist_from_ctr) -(crossH/2);
+					return -(crossH/2);
 				})
 				.attr('width',crossW)
 				.attr('height',crossH)
@@ -136,30 +182,28 @@ window.onload = function(){
 				.classed('cross_02',true);
 			cross_02
 				.attr('x',function(d){
-					return coord_ctr_x -(crossH/2);
+					return -(crossH/2);
 				})
 				.attr('y',function(d){
-					var dist_from_ctr = (+d.Minutes_Total*self.ring_padding) +(+d.Second/60*self.ring_padding);
-					return coord_ctr_y -(dist_from_ctr) -(crossW/2);
+					return -(crossW/2);
 				})
 				.attr('width',crossH)
 				.attr('height',crossW)
 				;
 			cross_02.exit().remove();
 
-			conns = nodesG.selectAll('line.conn')
-				.data(function(d){ return [d]; });
+			conns = nodeG.selectAll('line.conn')
+				.data(function(d){ return d; });
 			conns.enter().append('line')
 				.classed('conn',true);
 			conns
 				.attr('x1',coord_ctr_x)
-				.attr('y1',coord_ctr_y)
+				.attr('y1',coord_ctr_y +self.ring_center)
 				.attr('x2',function(d){
-					return coord_ctr_x;
+					return d.x;
 				})
 				.attr('y2',function(d){
-					var dist_from_ctr = (+d.Minutes_Total*self.ring_padding) +(+d.Second/60*self.ring_padding);
-					return coord_ctr_y -(dist_from_ctr);
+					return d.y;
 				});
 			conns.exit().remove();
 		}
