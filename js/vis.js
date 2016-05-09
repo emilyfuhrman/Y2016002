@@ -19,7 +19,7 @@ window.onload = function(){
 		getData:function(){
 			var self = this;
 			
-			d3.csv('data/frames.csv',function(e,d){
+			d3.csv('data/Frames.csv',function(e,d){
 				if(d){ self.generate(d); }
 			});
 		},
