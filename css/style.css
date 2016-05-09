@@ -44,10 +44,15 @@ body {
 svg {
 	display:block;
 	width:70%;
-	background:black;
 	margin:0 auto;
 	cursor:pointer;
 	shape-rendering:geometricPrecision;
+	}
+svg#vis {
+	background:black;
+	}
+svg#chart {
+	background:white;
 	}
 
 .label {
@@ -85,6 +90,10 @@ svg {
 	}
 .ring.last {
 	stroke-width:2;
+	}
+.ring.focus {
+	stroke:red;
+	stroke-width:1;
 	}
 
 .node {

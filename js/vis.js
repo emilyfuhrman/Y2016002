@@ -39,9 +39,9 @@ window.onload = function(){
 			detailLine.enter().append('rect')
 				.classed('detailLine',true);
 			detailLine
-				.attr('x',self.w/2 -500)
+				.attr('x',self.w/2 -600)
 				.attr('y',150)
-				.attr('width',1000)
+				.attr('width',1200)
 				.attr('height',2)
 				;
 			detailLine.exit().remove();
@@ -77,8 +77,11 @@ window.onload = function(){
 			rings.enter().append('circle')
 				.classed('ring',true);
 			rings
-				.classed('last',function(d,i){
-					return i === data.length -1;
+				.attr('class',function(d,i){
+					var last = i === data.length -1 ? ' last ' : '',
+						num = ' _' +(i +1);
+					var str = last +num + ' ring';
+					return str;
 				})
 				.attr('cx',self.w/2)
 				.attr('cy',self.h/2 +self.padding_top)
@@ -143,7 +146,7 @@ window.onload = function(){
 				.classed('nodesG',true);
 			nodesG
 				.attr('transform',function(d,i){
-					var dist_from_ctr_y = (+d.Minutes_Total*self.ring_padding) +(+d.Second/60*self.ring_padding) +self.ring_center;
+					var dist_from_ctr_y = ((+d.Minutes_Total -1)*self.ring_padding) +self.ring_center;
 					var ang,
 						pos_x,
 						pos_y;
@@ -168,6 +171,7 @@ window.onload = function(){
 				.on('mouseover',function(d){
 					d3.selectAll('.focus').classed('focus',false);
 					d3.select(this).classed('focus',true);
+					d3.select('.ring._' +d.Minutes_Total).classed('focus',true);
 
 					var str = '0' +d.Hour +':' +d.Minute +':' +d.Second +' — ' +d.Notes;
 					detailText.text(str);
@@ -242,6 +246,8 @@ window.onload = function(){
 					return d.y;
 				});
 			conns.exit().remove();
+
+			//chart underneath
 		}
 	}
 }().getData();
