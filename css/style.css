@@ -59,8 +59,33 @@ svg {
 	stroke-width:1.5;
 	}
 
+.cross {
+	stroke:#fff;
+	stroke-width:1;
+	fill:none;
+	}
+
 .node {
 	stroke:#fff;
-	stroke-width:0.25;
+	stroke-width:0.5;
 	fill:transparent;
 	}
+
+.cross_01,
+.cross_02 {
+	stroke:none;
+	fill:#fff;
+	}
+
+.conn {
+	stroke:red;
+	stroke-width:0.25;
+	fill:none;
+	}
+
+
+
+
+
+
+

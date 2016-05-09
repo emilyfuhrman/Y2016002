@@ -1,12 +1,12 @@
 Hour,Minute,Second,Minutes_Total,Type,Notes
 0,1,1,1,Graphic,Pile of papers in angular disarray
 0,1,2,1,Graphic,Pile of papers in angular disarray
-0,1,15,1,Light,Streak of light across closed door cuts through shadow
-0,1,16,1,Light,Streak of light across closed door cuts through shadow
-0,1,18,1,Light,Streak of light across closed door cuts through shadow
-0,1,19,1,Light,Streak of light across closed door cuts through shadow
-0,1,20,1,Light,Streak of light across closed door cuts through shadow
-0,1,21,1,Light,Streak of light across closed door cuts through shadow
+0,1,15,1,Graphic,Streak of light across closed door cuts through shadow
+0,1,16,1,Graphic,Streak of light across closed door cuts through shadow
+0,1,18,1,Graphic,Streak of light across closed door cuts through shadow
+0,1,19,1,Graphic,Streak of light across closed door cuts through shadow
+0,1,20,1,Graphic,Streak of light across closed door cuts through shadow
+0,1,21,1,Graphic,Streak of light across closed door cuts through shadow
 0,2,34,2,Directional,"In bar, woman dancing and woman who tells her to stop move in opposite directions"
 0,2,35,2,Directional,"In bar, woman dancing and woman who tells her to stop move in opposite directions"
 0,3,14,3,Scale,Pete (large) and woman (small) who tells him Astrid is on the phone
@@ -46,14 +46,14 @@ Hour,Minute,Second,Minutes_Total,Type,Notes
 0,31,38,31,Spatial,Banister intersecting diagonally with its shadow
 0,31,39,31,Spatial,Banister intersecting diagonally with its shadow
 0,35,53,35,Graphic,Footfall in parallel to angular carpet
-0,35,54,35,Light,Streak of light cutting again across closed door
-0,35,55,35,Light,Streak of light cutting again across closed door
-0,35,56,35,Light,Streak of light cutting again across closed door
-0,35,57,35,Light,Streak of light cutting again across closed door
+0,35,54,35,Graphic,Streak of light cutting again across closed door
+0,35,55,35,Graphic,Streak of light cutting again across closed door
+0,35,56,35,Graphic,Streak of light cutting again across closed door
+0,35,57,35,Graphic,Streak of light cutting again across closed door
 0,44,23,44,Directional,Thorne pushes suitcase across shadow of open door
 0,44,24,44,Directional,Thorne pushes suitcase across shadow of open door
 0,44,25,44,Directional,Thorne pushes suitcase across shadow of open door
-0,47,37,47,Light,Angular shadows of knife and glass of water on table (hand holding knife tips water)
+0,47,37,47,Graphic,Angular shadows of knife and glass of water on table (hand holding knife tips water)
 0,47,59,47,Graphic,Blade of knife in sharp contrast to objects on table
 0,48,0,48,Graphic,Blade of knife in sharp contrast to objects on table
 0,55,15,55,Graphic,Thorne's dangling hand intersects with its own shadow
